@@ -1,4 +1,6 @@
+
 var currentColor = 'ffffff';
+
 
 
 /* Initialize */
@@ -6,6 +8,7 @@ var currentColor = 'ffffff';
 if (!navigator.bluetooth) {
 	document.body.classList.add('unsupported');
 }
+
 
 
 $("#pencil").on("touchstart click", function(e) {
@@ -20,12 +23,6 @@ $("#pipet").on("touchstart click", function(e) {
     document.body.classList.remove('pencil');
 });
 
-$("#color").on("touchstart click", function(e) {
-    e.preventDefault();
-    document.body.classList.toggle('picker');
-});	
-
-
 $("#clear").on("touchstart click", function(e) {
     e.preventDefault();
 
@@ -37,10 +34,9 @@ $("#clear").on("touchstart click", function(e) {
     BluetoothMatrix.clear();
 });
 
-$("#disconnect").on("touchstart click", function(e) {
-    e.preventDefault();
-    disconnect();
-});
+
+
+
 
 
 /* Connect to device */
@@ -69,6 +65,14 @@ function connect() {
 function disconnect() {
 	document.body.classList.remove('connected');
 }
+
+
+
+buildTable (8, 8);
+buildPicker();
+
+
+
 
 
 /* Build the matrix based on the provided width and height */
@@ -120,6 +124,7 @@ function buildTable(width, height) {
 }
 
 
+
 /* Build the color picker */
 
 function buildPicker() {
@@ -130,8 +135,6 @@ function buildPicker() {
 	    width: $('#picker').width(),
 	    palettes: ['#000', '#f00', '#ff0', '#0f0', '#00f', '#fff'],
 	    change: function(event, ui) {
-	        $("#color").css('backgroundColor', ui.color.toString());
-	        $("#color").css('color', ui.color.toString());
 	        var color = ui.color.toString().substring(1);
 	        if (color != currentColor) {
 	            currentColor = color;
@@ -186,13 +189,13 @@ function buildPicker() {
 }
 
 
+
 /* Handle picking colors using the pipet and drawing colors using the pencil */
 
 function drawPixel(el) {
     if (document.body.classList.contains('pipet')) {
         currentColor = el.dataset.color;
 
-        document.querySelector('#color').style.backgroundColor = "#" + currentColor;
         $('#picker').iris('color', "#" + currentColor);
 
         document.body.classList.add('pencil');
@@ -209,7 +212,11 @@ function drawPixel(el) {
 }
 
 
-/* Handle drag and drop of images */
+
+
+
+
+
 
 function dropHandler(e) {
     e.preventDefault();

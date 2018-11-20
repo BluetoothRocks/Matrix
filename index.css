@@ -1,6 +1,10 @@
 
 /* Basic layout */
 
+:root {
+	--settings-height: 20vh;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -15,14 +19,8 @@ body {
 	text-align: center;
 }
 
-body > div {
-	width: 100vw;
-	max-width: 50vh;
-	margin: 0 auto;
-}
 button {
 	color: #888;
-	fill: #888;
 	background: none;
 	border: .3vh solid #888;
 	border-radius: 1vh;
@@ -31,242 +29,192 @@ button {
 }
 button svg {
     display: inline-block;
-    width: 2em;
+    width: 4vh;
     vertical-align: middle;
 }
 
 
 
-#banner {
-	display: none;
-	
-    background-color: #ffbb00;
-    color: #000;
-    max-width: inherit;
-    padding: 1em;
-    font-weight: bold;
-    box-sizing: border-box;
-}
-body.unsupported #banner {
-	display: block;
-}
 
+/* Content */
 
-
-
-
-/* Logo */
-
-svg#logo {
-	fill: #0f0;
-	margin: 10vh 0;
-	width: 70%;
-}
-
-svg#logo rect {
-	stroke: #444;
-	stroke-width: 0.05;
-}
-
-body.connected svg#logo {
-	display: none;
-}
-
-
-
-/* Buttons */
-
-.buttons {
-	color: #aaa;
-	font-size: 0.8em;
-}
-body.connected div.buttons {
-	display: none;
-}
-body.unsupported div.buttons {
+.content {
 	opacity: 0.3;
+	transition: opacity .5s, fill .5s;
 }
 
-
-button#connect {
-	margin: 0 0 2vh;
-	padding: 1vh 2vh;
-	font-size: 3vh;
-	
+body.connected .content {
+	opacity: 1;
 }
 
 
 
 
-
-
-/* Color picker */
-
-#color {
-    display: none;
-    height: 8vh;
-    background-color: #fff;
-    color: #fff;
-    position: relative;
-    transition: background-color 300ms ease;
-    
-    margin-top: 5vh;
-}
-.connected #color {
-    display: block;
-}
-#color svg {
-    -webkit-filter: invert(100%) grayscale(100%) contrast(150%);
-    filter: invert(100%) grayscale(100%) contrast(150%);
-    
-    color: inherit;
-    stroke: currentColor;
-    fill: currentColor;
-    opacity: 0.6;
-    position: absolute;
-    right: 1em;
-    top: 1em;
-    height: 1.4em;
-    width: 1.4em;
-    transition: transform 300ms ease;
-}
-            
-#picker {
-    display: none;
-    border: 2em solid #333;
-    background: #333;
-	height: 46vh;
-    box-sizing: border-box;
-    opacity: 0;
-    transition: opacity 300ms ease;
-}
-.connected #picker {
-    display: block;
-}
-.iris-picker * {
-    box-shadow: none !important;
-}
-.picker #picker {
-    opacity: 1;
-}              
-        
-        
-        
-/* Container */            
-            
-#container {
-    display: none;
-
-    overflow: hidden;
-    margin-top: -46vh;
-    position: relative;
-    z-index: 1000;
-    transition: transform 300ms ease;
-}            
-.connected #container {
-    display: block;
-}
-.picker #container {
-    transform: translateY(46vh);
-}
-
-            
-            
-/* Pencil and pipet mode */            
-            
-#mode {
-    display: flex;
-    justify-content: space-around;
-    padding: 2em 15vh 2em;
-}
-#mode button {
-    background: #333;
-    border: none;
-    border-radius: 2em;
-    height: 4em;
-    width: 4em;
-    border: .2em solid #333;
-    transition: border-color 300ms ease;
-}
-.pencil button#pencil {
-    border: .2em solid #888;
-}
-.pipet button#pipet {
-    border: .2em solid #888;
-}
-#mode button svg {
-    width: 2em;
-    height: 2em;
-}
-#mode button svg path {
-    stroke: #888;
-    fill: #888;
-}       
-            
-            
-            
-            
 /* Matrix editor */
 
 #editor td {
-    border: 0.2em solid #444;
+    border: 0.3vh solid #444;
     margin: 0;
     padding: 0;
 }
 
 #editor {
+    margin: 8vh auto 0;
     border-collapse: collapse;
-    margin-left: -0.2em;
-	width: calc(50vh + .4em);
-	height: calc(50vh + .4em);
+	width: 50vh;
+	height: 50vh;
 	
 	cursor: crosshair;
 }
-            
- 
 
 
-/* Controls */
+
+           
+/* Pencil and pipet mode */            
+
+#tools {
+    padding-top: 3vh;
+    width: 50vh;
+    margin: 0 auto;
+}
+
+#mode {
+    float: left;
+}
+#mode button {
+    background: #333;
+    border: none;
+    border-radius: 3vh;
+    height: 6vh;
+    width: 6vh;
+    border: .3vh solid #333;
+    transition: border-color 300ms ease;
+    margin-right: 2vh;
+}
+.pencil button#pencil {
+    border: .3vh solid #888;
+}
+.pipet button#pipet {
+    border: .3vh solid #888;
+}
+#mode button svg {
+    width: 3vh;
+    height: 3vh;
+}
+#mode button svg path {
+    stroke: #888;
+    fill: #888;
+}       
 
 #controls {
-	margin: 4vh 0;
+    float: right;
 }
 #controls button {
-    font-size: 1em;
-    width: 9em;
-    height: 3em;
-    margin: 0 0.5em;
-    padding-top: 0.1em;    
+    color: #ddd;
+	font-size: 2vh;
+	padding: 1vh 0 1vh 2vh;
+    margin: 0 1vh;
+    border: none;
 }
 #controls button svg {
-    margin-top: -0.3em;
+	fill: #ddd;
+	width: 4vh;
+	height: 4vh;
+	vertical-align: top;
+	margin-top: -0.9vh;
+}
+
+
+/* Settings */
+
+.settings {
+	position: absolute;
+	top: calc(100vh - var(--settings-height));
+	width: 100%;
+	min-height: var(--settings-height);
+	background: #333;
+
+	transition: opacity .3s ease-in-out;
+	opacity: 0.3;
+	pointer-events: none;
+}
+body.connected .settings {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+
+
+/* Pills */
+
+.pills {
+	margin-top: -2.4vh;
+	margin-bottom: 0;
+	display: flex;
+}
+.pills button {
+	margin: 0;
+	padding: 1vh 2vh;
+	border-radius: 0;
+	border-left: none;
+	font-size: 2vh;
+	background: #333;
+}
+.pills button:first-of-type {
+	border-left: .3vh solid #888;
+	border-top-left-radius: 1vh;
+	border-bottom-left-radius: 1vh;
+	margin-left: auto;
+}
+.pills button:last-of-type {
+	border-top-right-radius: 1vh;
+	border-bottom-right-radius: 1vh;
+	margin-right: auto;
+}
+
+body.color button#color,
+body.customize button#customize {
+	background: #888;
+	color: #fff;
 }
 
 
 
 
-/* Github link */
 
-#about {
+/* Views */
+
+.views {
+	padding: 6vh 0;
+	min-height: 6vh;
 	display: block;
-	padding: 6vh 0 2vh;
 }
-#about a {
-	font-size: 0.6em;
-	text-decoration: none;
-	color: #999;
-}
-#about svg {
-	display: inline-block;
-	height: 1.3em;
-	vertical-align: bottom
-}
-#about svg path {
-	fill: currentColor;
-	fill-rule: evenodd;
-}
-#about:hover svg path {
-	color: #cc174d;
+.views > div {
+	display: none;
 }
 
-                           
+body.color div#colorView,
+body.customize div#customizeView {
+	display: block;
+}
+
+
+
+/* Color picker */
+
+div#colorView > div {
+    width: 50vh;
+    margin: 0 auto;
+}
+#picker {
+    display: block;
+    background: #333;
+	height: 46vh;
+    box-sizing: border-box;
+    transition: opacity 300ms ease;
+}
+.iris-picker * {
+    box-shadow: none !important;
+}
+
+
